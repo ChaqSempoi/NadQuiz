@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz for My Girlfriend</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background-image: url('https://www.shutterstock.com/shutterstock/videos/1109508805/thumb/1.jpg?ip=x480'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            color: white; /* Change text color for better visibility */
+        }
+        .quiz-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for readability */
+        }
+        .gif {
+            max-width: 100%;
+            height: auto;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745; /* Customize button color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%; /* Full width */
+        }
+        button:hover {
+            background-color: #218838; /* Darker shade on hover */
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column; /* Arrange buttons vertically */
+            align-items: center; /* Center the buttons */
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container" id="quiz">
+    <div id="question1" class="question">
+        <img class="gif" src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWh6cno0M2ZhYXVya2h5NDBuc25idHVwdGp4OXczY2xzNmhwdm42OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/K4x1ZL36xWCf6/giphy.gif" alt="Question GIF">
+        <h2>What is Ilwin's Favourite Dish?</h2>
+        <div class="button-container">
+            <button onclick="answerQuestion('correct')">A. Butter Chicken</button>
+            <button onclick="answerQuestion('wrong')">B. Beef Rendang</button>
+            <button onclick="answerQuestion('wrong')">C. Double Quarter Pounder</button>
+            <button onclick="answerQuestion('wrong')">D. Wingstop</button>
+        </div>
+    </div>
+
+    <div id="question2" class="question" style="display:none;">
+        <img class="gif" src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzVwZG1wbTJ5OThuY21lYWZkN2QzdTBuYm12OGhhNzZsMzg4NTVycyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/11pEf1ZMBCxoe4/giphy.gif" alt="Question GIF">
+        <h2>What is Ilwin's favourite sport?</h2>
+        <div class="button-container">
+            <button onclick="answerQuestion('correct')">A. Sex</button>
+            <button onclick="answerQuestion('correct')">B. Fishing</button>
+            <button onclick="answerQuestion('wrong')">C. Soccer</button>
+            <button onclick="answerQuestion('wrong')">D. Volleyball</button>
+        </div>
+    </div>
+
+    <div id="question3" class="question" style="display:none;">
+        <img class="gif" src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHk0M3A2NWsxd3k0amszb205NXF4NXpxeTkyN3loemQwdTE5NnMzZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZOStzpF9H5syI/giphy.gif" alt="Question GIF">
+        <h2>Who does Ilwin love the most?</h2>
+        <div class="button-container">
+            <button onclick="answerQuestion('wrong')">A. Ibu</button>
+            <button onclick="answerQuestion('correct')">B. Nadhirah Nasuha</button>
+            <button onclick="answerQuestion('wrong')">C. Lofa</button>
+            <button onclick="answerQuestion('wrong')">D. Discord Kitten</button>
+        </div>
+    </div>
+
+    <div id="result" style="display:none;">
+        <h2 id="resultTitle"></h2>
+        <p>Your score is: <span id="score"></span>/3</p>
+        <p>Thanks for your time sayang! hehe i know youre mummy sleeping in your room but im here!</p>
+    </div>
+</div>
+
+<script>
+    let score = 0;
+    let currentQuestion = 1;
+
+    function answerQuestion(result) {
+        if (result === 'correct') {
+            score++;
+        }
+        currentQuestion++;
+        if (currentQuestion <= 3) {
+            showQuestion(currentQuestion);
+        } else {
+            showResult();
+        }
+    }
+
+    function showQuestion(questionNumber) {
+        document.querySelectorAll('.question').forEach(q => q.style.display = 'none');
+        document.getElementById('question' + questionNumber).style.display = 'block';
+    }
+
+    function showResult() {
+        document.querySelectorAll('.question').forEach(q => q.style.display = 'none');
+        document.getElementById('result').style.display = 'block';
+
+        const resultTitle = document.getElementById('resultTitle');
+        const scoreDisplay = document.getElementById('score');
+
+        scoreDisplay.textContent = score;
+        if (score >= 2) {
+            resultTitle.textContent = 'hm nasib pass kalau tk!';
+        } else {
+            resultTitle.textContent = 'Do you really love me yang ?';
+        }
+    }
+
+    // Start with the first question
+    showQuestion(currentQuestion);
+</script>
+
+</body>
+</html>
